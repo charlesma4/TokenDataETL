@@ -45,7 +45,7 @@ class UniswapV2(DataSource):
 		return res.json()["data"]
 
 	def parse_swaps(self, raw_data):
-		return [swap["amountUSD"] for swap in raw_data["swaps"]]
+		return [float(swap["amountUSD"]) for swap in raw_data["swaps"]]
 
 	def run_extraction(self):
 		token_to_data = {}

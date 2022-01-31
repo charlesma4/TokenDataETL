@@ -1,4 +1,5 @@
 from extract.data_sources.uniswap_v2 import UniswapV2
+from transform.transform import Transform
 import argparse
 
 
@@ -29,7 +30,11 @@ def run():
 	uniswap_source = UniswapV2(tokens_to_queries)
 	tokens_to_data = uniswap_source.run_extraction()
 	print(tokens_to_data)
-	
+	# need to aggregate tokens_to_datas from various sources
+	# transform
+	transformer = Transform(tokens_to_data)
+	tokens_to_metrics = transformer.run_transformation()
+	print(tokens_to_metrics)
 
 
 if __name__ == "__main__":
