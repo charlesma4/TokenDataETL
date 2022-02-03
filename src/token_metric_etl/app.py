@@ -1,5 +1,5 @@
 from extract.data_sources.uniswap_v2 import UniswapV2
-from transform.transformer import Transform
+from transform.transformer import Transformer
 from load.loader import Loader
 import argparse
 import time
@@ -28,11 +28,10 @@ def run():
 		if args_dict[arg]:
 			for token in tokens_to_queries:
 				tokens_to_queries[token].append(metric_data_pairings[arg])
-
 	uniswap_source = UniswapV2(tokens_to_queries)
 	# if there are multiple data sources for same token, add additional aggregation step
 	# in case of volume/liquidity, can just sum everything together for a given token_id
-	transformer = Transform(args_dict)
+	transformer = Transformer(args_dict)
 	loader = Loader()
 
 	while True:

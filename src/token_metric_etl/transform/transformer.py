@@ -1,6 +1,6 @@
 import traceback
 
-class Transform:
+class Transformer:
     supported_metrics = set([
         "volume",
         "liquidity"
